@@ -42,7 +42,7 @@ sub register {
             # leave static content untouched
             return if $self->stash('mojo.static');
 
-            my $str = "\n<!-- Mojolicious logging -->\n<script>";
+            my $str = "\n<!-- Mojolicious logging -->\n<script>\nif (window.console) {\n\t";
 
             for (sort keys %$logs) {
                 next if !@{$logs->{$_}};
@@ -51,7 +51,7 @@ sub register {
                 $str .= "console.groupEnd(\"$_\"); ";
             }
 
-            $str .= "</script>\n";
+            $str .= "\n}\n</script>\n";
 
             $self->res->body($self->res->body . $str);
         }
