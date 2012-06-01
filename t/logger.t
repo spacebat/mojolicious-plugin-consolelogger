@@ -1,4 +1,4 @@
-use Test::More tests => 17;
+use Test::More tests => 27;
 use Test::Mojo;
 
 # Make sure sockets are working
@@ -41,6 +41,16 @@ $t->get_ok($_)->status_is(200)->element_exists('script')
     qr/console\.group\("fatal"\);.*?console\.log\({"json":"structure"}\);.*?console\.groupEnd\("fatal"\);/
   )
 
+  for qw| /normal /exception |;
+
+# Log content not accumulated over requests
+$t->get_ok($_)->status_is(200)->element_exists('script')
+  ->content_like(
+    qr/console\.group\("info"\);\s*console\.log\("info"\);\s*console\.groupEnd\("info"\);/
+  )
+  ->content_unlike(
+    qr/console\.group\("info"\);\s*console\.log\("info"\);\s*console\.log\("info"\);\s*console\.groupEnd\("info"\);/
+  )
   for qw| /normal /exception |;
 
 # No script tag in static content
