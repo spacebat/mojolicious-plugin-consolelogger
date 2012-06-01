@@ -105,16 +105,6 @@ L<Mojolicious::Plugin> and implements the following new ones.
 
 Register condition in L<Mojolicious> application.
 
-=head1 HELPERS
-
-=head2 C<clear_console_log>
-
-    app->clear_console_log;
-
-Clear the console log entries accumulated in the L<Mojolicious> application.
-A C<before_dispatch> hook is automatically installed to call this before each
-request unless a true value to the option C<preserve_log> at plugin load time.
-
 =head1 SEE ALSO
 
 L<Mojolicious>
