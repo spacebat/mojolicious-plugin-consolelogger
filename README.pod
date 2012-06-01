@@ -1,10 +1,10 @@
 =head1 NAME
 
-Mojolicious::Plugin::ConsoleLogger
+Mojolicious::Plugin::ConsoleLogger - Browser console logging
 
 =head1 DESCRIPTION
 
-Browser console logging for webkit dev tools/firebug
+Browser console logging
 
 =head1 USAGE
 
@@ -18,6 +18,7 @@ Browser console logging for webkit dev tools/firebug
         app->log->error("This is bad");
         app->log->fatal("This is really bad");
         app->log->info("This isn't bad at all");
+        app->log->info({json => 'structure'});
 
         shift->render(text => 'Ahm in ur browzers, logginz ur console');
     };
@@ -45,7 +46,7 @@ L<http://github.com/tempire/mojolicious-plugin-consolelogger>
 
 =head1 VERSION
 
-0.02
+0.04
 
 =head1 CREDITS
 
@@ -54,5 +55,7 @@ Implementation stolen from L<Plack::Middleware::ConsoleLogger>
 =head1 AUTHOR
 
 Glen Hinkle tempire@cpan.org
+
+Andrew Kirkpatrick
 
 =cut
